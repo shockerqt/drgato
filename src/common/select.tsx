@@ -1,6 +1,8 @@
 import '../styles/select.scss';
 
-import { useEffect, useRef, useState } from 'react';
+import { FocusEvent, KeyboardEvent, MouseEvent, useEffect, useState } from 'react';
+
+import { RightIcon } from '.';
 
 type Option = {
   label: string,
@@ -15,21 +17,25 @@ const useOptions = (
   const [optionList, setOptionList] = useState(<div></div>);
 
   const handleClick = (
+    event: MouseEvent,
     label: string,
     value: string | number,
   ) => {
+    const element = event.target as HTMLElement;
     setSelected({ label, value });
+    element.blur();
   };
 
   useEffect(() => setOptionList(
     <>
       {options.map(({ label, value }) => (
-        <div
+        <button
           className={`option-item ${selected.value === value ? 'option-selected' : ''}`}
           key={value}
-          onClick={() => handleClick(label, value)}>
+          onClick={(event) => handleClick(event, label, value)}
+          autoFocus={selected.value === value}>
           {label}
-        </div>
+        </button>
       ))}
     </>
   ), [options, selected]);
@@ -55,37 +61,6 @@ const useDisplay = (
   return display;
 };
 
-const Options = ({ optionList, opened, setOpened }:
-  {
-    optionList: JSX.Element,
-    opened: boolean,
-    setOpened: React.Dispatch<React.SetStateAction<boolean>>,
-  }
-) => {
-  const optionsRef = useRef(null);
-
-  useEffect(() => {
-    const listener = (event: Event) => {
-      const element = optionsRef.current as unknown as Node;
-      const inside = element.contains(event.target as Node);
-      if (!inside) {
-        setOpened(false);
-        window.removeEventListener('click', listener);
-      }
-    };
-
-    if (opened) window.addEventListener('click', listener);
-
-    return () => window.removeEventListener('click', listener);
-  }, [opened]);
-
-  return (
-    <div className="options-container" ref={optionsRef}>
-      {optionList}
-    </div>
-  );
-};
-
 export const Select = ({ label, options, initSelected }: {
   label: string,
   options: Option[],
@@ -98,26 +73,35 @@ export const Select = ({ label, options, initSelected }: {
   const display = useDisplay(label, selected);
   const optionList = useOptions(options, selected, setSelected);
 
-  useEffect(() => {
-    setOpened(false);
-  }, [selected]);
-
-
   const handleClick = () => {
-    if (!opened) setOpened(true);
+    setOpened(!opened);
+  };
+
+  const handleBlur = (event: FocusEvent) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      setOpened(false);
+    }
+  };
+
+  const handleKeyPress = (event: KeyboardEvent) => {
+    if (event.code === 'Escape') setOpened(false);
   };
 
   return (
-    <div className="select-root">
-      <div className="select-container"
+    <div
+      className={`select-root${opened ? ' select-opened' : ''}`}
+      onBlur={handleBlur}
+      onKeyUp={handleKeyPress}>
+      <button
+        className="select-container"
         onClick={handleClick}>
         {display}
-      </div>
+        <RightIcon />
+      </button>
       {opened ?
-        <Options
-          optionList={optionList}
-          opened={opened}
-          setOpened={setOpened} /> : ''}
+        <div className="options-container">
+          {optionList}
+        </div> : ''}
     </div>
   );
 };

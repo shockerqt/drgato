@@ -1,24 +1,38 @@
 @use "theme";
 @use "sass:color";
 
-$input-border: #B8A9D5;
+$accent: theme.$accent-color;
+$input-border: color.scale($accent, $lightness: 20%);
+$input-border-hover: color.scale($accent, $lightness: -10%);
+$input-background-opened: color.scale($accent, $lightness: 92%);
+$option-selected-bg: color.scale($accent, $lightness: 80%);
+$option-hover-bg: color.scale($accent, $lightness: 90%);
+$option-hover-selected-bg: color.scale($accent, $lightness: 75%);
+$option-active-bg: color.scale($accent, $lightness: 70%);
 $options-container-border: rgb(212, 212, 212);
 $border-radius: 4px;
-$option-selected-bg: color.scale(theme.$accent-color, $lightness: 80%);
-$option-hover-bg: color.scale(theme.$accent-color, $lightness: 90%);
-$option-hover-selected-bg: color.scale(theme.$accent-color, $lightness: 75%);
+$transition: all 0.08s ease-in-out;
 
 div.select-root {
   position: relative;
-  width: 159px;
+  width: 100%;
   user-select: none;
+  transition: $transition;
 
-  div.select-container {
+  // Selector closed
+  button.select-container {
+    width: 100%;
+    text-align: left;
+    position: relative;
     display: block;
     border: 1px solid $input-border;
     border-radius: $border-radius;
     padding: 6px 10px;
+    transition: $transition;
+    background: none;
 
+
+    // Display (label and selection)
     p {
       text-transform: uppercase;
   
@@ -26,6 +40,7 @@ div.select-root {
         font-size: 10px;
         color: $input-border;
         margin-bottom: 2px;
+        transition: $transition;
       }
       
       &.display-selection {
@@ -35,6 +50,64 @@ div.select-root {
         color: theme.$foreground-color;
       }
     }
+
+    // Icon
+    svg {
+      color: $input-border;
+      position: absolute;
+      right: 8px;
+      top: 13px;
+      height: 16px;
+      transform: rotate(90deg);
+      transition: $transition;
+    }
+    
+    // Select hover
+    &:hover {
+      border-color: $input-border-hover;
+
+      // Display label hover
+      p.display-label {
+        color: $input-border-hover;
+      }
+
+      // Icon hover
+      svg {
+        color: $input-border-hover;
+      }
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 1px $input-border-hover; /* Border bottom */
+      border-color: $input-border-hover;
+    }
+} 
+
+  // Selector opened
+  &.select-opened, &:active {
+    background-color: $input-background-opened;
+
+    // Display opened
+    div.select-container {
+      border-color: $input-border-hover;
+
+      // Icon
+      svg {
+        color: $input-border-hover;
+        position: absolute;
+        right: 8px;
+        top: 13px;
+        height: 16px;
+        transform: rotate(-90deg);
+      }
+
+      // Display label hover
+      p.display-label {
+        color: $input-border-hover;
+      }
+
+    }
   }
 
 
@@ -43,7 +116,7 @@ div.select-root {
     padding: 4px 0;
     border-radius: $border-radius;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
-    top: 120%;
+    top: 115%;
     left: 0;
     width: 100%;
     max-height: 200px;
@@ -51,13 +124,17 @@ div.select-root {
     background-color: white;
     z-index: 1;
 
-    div.option-item {
+    button.option-item {
+      text-align: left;
+      border: none;
+      width: 100%;
       padding: 10px;
+      background: none;
       color: theme.$foreground-color;
+      transition: $transition;
 
       &.option-selected {
         background-color: $option-selected-bg;
-        transition-delay: 0.05s;
       }
 
       &:not(.option-selected):hover {
@@ -66,8 +143,22 @@ div.select-root {
 
       &.option-selected:hover {
         background-color: $option-hover-selected-bg;
-        transition-delay: unset;
+      }
+
+      &:focus-visible {
+        outline: none;
+        text-decoration: underline;
+        background-color: $option-hover-bg; 
+      }
+      
+      &.option-selected:focus-visible {
+        background-color: $option-hover-selected-bg;
+      }
+
+      &:active {
+        background-color: $option-active-bg !important;
       }
     }
+    
   }
 }
