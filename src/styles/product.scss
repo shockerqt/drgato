@@ -30,4 +30,10 @@ div.product-container {
       object-fit: cover;
     }
   }
+
+  div.product-selectors {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
 }

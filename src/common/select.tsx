@@ -61,10 +61,11 @@ const useDisplay = (
   return display;
 };
 
-export const Select = ({ label, options, initSelected }: {
+export const Select = ({ label, options, initSelected, className }: {
   label: string,
   options: Option[],
   initSelected: Option,
+  className?: string,
 }) => {
 
   const [selected, setSelected] = useState(initSelected);
@@ -89,7 +90,7 @@ export const Select = ({ label, options, initSelected }: {
 
   return (
     <div
-      className={`select-root${opened ? ' select-opened' : ''}`}
+      className={`${className ? `${className} ` : ''}select-root${opened ? ' select-opened' : ''}`}
       onBlur={handleBlur}
       onKeyUp={handleKeyPress}>
       <button

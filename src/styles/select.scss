@@ -81,8 +81,17 @@ div.select-root {
       outline: none;
       box-shadow: 0 0 0 1px $input-border-hover; /* Border bottom */
       border-color: $input-border-hover;
+
+      
+      p.display-label {
+        color: $input-border-hover;
+      }
+      
+      svg {
+        color: $input-border-hover;
+      }
     }
-} 
+  }
 
   // Selector opened
   &.select-opened, &:active {

@@ -45,22 +45,35 @@ export const Product = ({ category }: { category: string }) => {
             <p>{product.dose}</p>
           </div>
         </div>
-        <Select
-          label={'Laboratorio'}
-          initSelected={{ label: 'Option 1', value: 'value1' }}
-          options={[
-            { label: 'Option 1', value: 'value1' },
-            { label: 'Option 2', value: 'value2' },
-            { label: 'Option 3', value: 'value3' },
-          ]} />
-        <Select
-          label={'Laboratorio'}
-          initSelected={{ label: 'Option 1', value: 'value1' }}
-          options={[
-            { label: 'Option 1', value: 'value1' },
-            { label: 'Option 2', value: 'value2' },
-            { label: 'Option 3', value: 'value3' },
-          ]} />
+        <div className="product-selectors">
+          <Select
+            className="product-selector"
+            label={'Laboratorio'}
+            initSelected={{ label: 'Option 1', value: 'value1' }}
+            options={[
+              { label: 'Option 1', value: 'value1' },
+              { label: 'Option 2', value: 'value2' },
+              { label: 'Option 3', value: 'value3' },
+            ]} />
+          <Select
+            className="product-selector"
+            label={'Laboratorio'}
+            initSelected={{ label: 'Option 1', value: 'value1' }}
+            options={[
+              { label: 'Option 1', value: 'value1' },
+              { label: 'Option 2', value: 'value2' },
+              { label: 'Option 3', value: 'value3' },
+            ]} />
+          <Select
+            className="product-selector"
+            label={'Laboratorio'}
+            initSelected={{ label: 'Option 1', value: 'value1' }}
+            options={[
+              { label: 'Option 1', value: 'value1' },
+              { label: 'Option 2', value: 'value2' },
+              { label: 'Option 3', value: 'value3' },
+            ]} />
+        </div>
       </header>
       <main>
       </main>
