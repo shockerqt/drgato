@@ -31,6 +31,10 @@ body {
   font-family: Lato;
 }
 
+#root {
+  min-height: 100vh;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   font-family: inherit;

@@ -1,6 +1,16 @@
 @use "theme";
+@use "sass:color";
+
+$foreground-color: theme.$foreground-color;
+$header-box-shadow: 0 0 12px #C6D0F7;
+$external-padding: 20px;
+$dialog-button-border: color.change($foreground-color, $alpha: 0.3);
+@debug color.alpha(#e1d7d2);
+
 
 div.product-container {
+  min-height: 100vh;
+  background-color: theme.$background-color-blue;
 
   nav, header {
     background-color: theme.$background-color-white;
@@ -10,11 +20,14 @@ div.product-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 0 20px 20px 20px;
+    padding: 0 $external-padding $external-padding $external-padding;
+    box-shadow: $header-box-shadow;
+    border-radius: 0 0 8px 8px;
   }
 
   main {
-    background-color: theme.$background-color-blue;
+    min-height: 100%;
+    padding: $external-padding;
   }
 
   
@@ -29,11 +42,55 @@ div.product-container {
       height: 100px;
       object-fit: cover;
     }
+
+    div.product-details {
+      display: grid;
+      align-content: center;
+      color: $foreground-color;
+
+      h1 {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 14px;
+        font-weight: normal;
+      }
+    }
   }
 
   div.product-selectors {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
+  }
+
+  div.dialog-buttons {
+    display: flex;
+    gap: 32px;
+
+    div.dialog-root {
+      position: relative;
+
+      button {
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        gap: 8px;
+        color: $foreground-color;
+        font-size: 13px;
+        text-transform: uppercase;
+        background: none;
+        border-radius: 4px;
+        border: 1px solid $dialog-button-border;
+        padding: 8px 16px;
+        
+  
+        svg {
+          height: 14px;
+        }
+      }
+    }
   }
 }
