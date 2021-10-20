@@ -1,0 +1,19 @@
+@use "theme";
+
+nav.breadcrumb {
+  display: flex;
+  align-items: center;
+  
+
+  a {
+    font-size: 12px;
+    text-decoration: none;
+    color: theme.$foreground-color;
+  }
+
+  svg {
+    display: block;
+    height: 12px;
+    color: theme.$icon-color;
+  }
+}

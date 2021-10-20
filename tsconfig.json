@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
-    "module": "ES6",
+    "module": "ESNext",
     "target": "ESNext",
-    "jsx": "react",
+    "moduleResolution": "Node",
+    "lib": ["DOM", "ESNext"],
+    "jsx": "react-jsx",
     "outDir": "./dist",
     "sourceMap": true,
     "strict": true,
@@ -11,7 +13,7 @@
     "forceConsistentCasingInFileNames": true
   },
   "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Development",
+  "display": "drgato",
   "include": ["src"],
   "exclude": ["node_modules"]
 }

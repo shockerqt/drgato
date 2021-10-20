@@ -2,10 +2,9 @@
   "name": "typescript-template",
   "version": "1.0.0",
   "description": "Node template with typescript and Eslint",
-  "main": "./src/app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.production.js",
+    "build": "NODE_ENV=production webpack --config webpack.production.js",
     "start": "webpack serve --open --config webpack.development.js"
   },
   "repository": {
@@ -19,13 +18,27 @@
   },
   "homepage": "https://github.com/shockerqt/typescript-template#readme",
   "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/react-router-dom": "^5.3.1",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
+    "css-loader": "^6.4.0",
     "eslint": "latest",
+    "html-webpack-plugin": "^5.4.0",
+    "node-sass": "^6.0.1",
+    "sass": "^1.43.2",
+    "sass-loader": "^12.2.0",
+    "style-loader": "^3.3.0",
     "ts-loader": "latest",
     "typescript": "latest",
     "webpack": "latest",
     "webpack-cli": "latest",
     "webpack-dev-server": "latest"
+  },
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "latest"
   }
 }

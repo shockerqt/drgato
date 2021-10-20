@@ -1,0 +1,33 @@
+@use "theme";
+
+div.product-container {
+
+  nav, header {
+    background-color: theme.$background-color-white;
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px 20px 20px;
+  }
+
+  main {
+    background-color: theme.$background-color-blue;
+  }
+
+  
+  div.product-info {
+    display: grid;
+    padding: 5px 20px;
+    grid-template-columns: auto 1fr;
+    gap: 40px;
+
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+  }
+}
