@@ -7,6 +7,7 @@ module.exports = {
   ],
   extends: [
     'eslint:recommended',
+    'plugin:jest-dom/recommended',
     'plugin:@typescript-eslint/recommended',
   ],
   rules: {

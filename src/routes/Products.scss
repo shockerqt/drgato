@@ -1,0 +1,12 @@
+@use "../styles/theme";
+
+div.products {
+  display: grid;
+  padding: 40px;
+  grid-template-columns: 360px 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "filters sorters"
+    "filters grid";
+  gap: 40px;
+}

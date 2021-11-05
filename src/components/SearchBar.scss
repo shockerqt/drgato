@@ -1,0 +1,29 @@
+@use "../styles/theme";
+
+div.searchbar {
+  position: relative;
+
+  input.searchbar-input {
+    align-self: center;
+    width: 550px;
+    background: theme.$background-color-white;
+    outline: none;
+    border: none;
+    font-size: theme.$font-size-medium;
+    padding: 14px 14px 14px 60px;
+    border-radius: 60px;
+  
+    &::placeholder {
+      color: theme.$foreground-color-light;
+    }
+  }
+
+  svg.searchbar-icon {
+    color: theme.$foreground-color;
+    height: 20px;
+    position: absolute;
+    top: 16px;
+    left: 20px;
+  }
+
+}

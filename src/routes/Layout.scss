@@ -1,0 +1,47 @@
+@use "../styles/theme";
+
+div.layout {
+
+  nav.navbar {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 55px 1fr auto 1fr 55px;
+    grid-template-areas: "home categories searchbar .";
+    gap: 30px;
+    padding: 30px 50px;
+
+    .navbar-home {
+      grid-area: home;
+
+      svg.navbar-drgato-logo {
+        display: block;
+        color: theme.$foreground-color;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .navbar-categories {
+      grid-area: categories;
+      font-size: theme.$font-size-medium;
+      
+      &:hover > span {
+        text-decoration: underline;
+      }
+
+      span.navbar-categories-text-decoration {
+        color: theme.$foreground-color-light;
+
+      }
+
+      span.navbar-categories-text {
+        color: theme.$foreground-color;
+      }
+    }
+
+    .navbar-searchbar {
+      grid-area: searchbar;
+
+    }
+  }
+}

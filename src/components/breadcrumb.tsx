@@ -1,7 +1,7 @@
 import '../styles/breadcrumb.scss';
 
 import { Link } from 'react-router-dom';
-import { RightIcon } from '.';
+import { ChevronRightIcon } from '.';
 import React from 'react';
 
 export const Breadcrumb = ({ crumbs }:
@@ -13,7 +13,7 @@ export const Breadcrumb = ({ crumbs }:
     {crumbs.map(({ path, pathname }, index) => (
       <React.Fragment key={path}>
         <Link to={path} >{pathname}</Link>
-        {crumbs.length - 1 > index ? <RightIcon /> : ''}
+        {crumbs.length - 1 > index ? <ChevronRightIcon /> : ''}
       </React.Fragment>
     ))}
   </nav>

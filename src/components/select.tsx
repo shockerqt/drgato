@@ -2,7 +2,7 @@ import '../styles/select.scss';
 
 import { FocusEvent, KeyboardEvent, MouseEvent, useEffect, useState } from 'react';
 
-import { RightIcon } from '.';
+import { ChevronRightIcon } from '.';
 
 type Option = {
   label: string,
@@ -97,7 +97,7 @@ export const Select = ({ label, options, initSelected, className }: {
         className="select-container"
         onClick={handleClick}>
         {display}
-        <RightIcon />
+        <ChevronRightIcon />
       </button>
       {opened ?
         <div className="options-container">

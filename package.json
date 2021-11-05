@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Node template with typescript and Eslint",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "NODE_ENV=production webpack --config webpack.production.js",
-    "start": "webpack serve --open --config webpack.development.js"
+    "start": "webpack serve --open --config webpack.development.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -18,18 +18,25 @@
   },
   "homepage": "https://github.com/shockerqt/typescript-template#readme",
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.0.2",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "@types/react-router-dom": "^5.3.1",
+    "@types/react-router-dom": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "css-loader": "^6.4.0",
     "eslint": "latest",
+    "eslint-plugin-jest-dom": "^3.9.2",
     "html-webpack-plugin": "^5.4.0",
+    "jest": "^27.3.1",
     "node-sass": "^6.0.1",
     "sass": "^1.43.2",
     "sass-loader": "^12.2.0",
     "style-loader": "^3.3.0",
+    "ts-jest": "^27.0.7",
     "ts-loader": "latest",
     "typescript": "latest",
     "webpack": "latest",
@@ -39,6 +46,7 @@
   "dependencies": {
     "react": "latest",
     "react-dom": "latest",
-    "react-router-dom": "latest"
+    "react-router-dom": "^6.0.0-beta.8",
+    "web-vitals": "^2.1.2"
   }
 }

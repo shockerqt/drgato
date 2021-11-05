@@ -5,7 +5,10 @@ $foreground-color: theme.$foreground-color;
 $header-box-shadow: 0 0 12px #C6D0F7;
 $external-padding: 20px;
 $dialog-button-border: color.change($foreground-color, $alpha: 0.3);
-@debug color.alpha(#e1d7d2);
+$product-hover-bg: color.scale(theme.$accent-color, $lightness: 90%);
+
+$farmacy-border: color.adjust(theme.$accent-color, $lightness: 60%);
+$farmacy-box-shadow: 0 0 8px #C6D0F7;
 
 
 div.product-container {
@@ -89,6 +92,53 @@ div.product-container {
   
         svg {
           height: 14px;
+        }
+      }
+    }
+  }
+
+  div.pharmacy-list {
+    margin-top: $external-padding;
+
+    div.pharmacy {
+      margin-bottom: $external-padding;
+      border-radius: 4px;
+      background-color: white;
+      box-shadow: $farmacy-box-shadow;
+
+      div.pharmacy-header {
+        padding: 16px 16px 4px 16px;
+        
+        img {
+          max-width: 150px;
+          max-height: 20px;
+          object-fit: cover;
+        }
+      }
+
+      div.pharmacy-body {
+        padding-bottom: 8px;
+
+        div.pharmacy-product {
+          height: 40px;
+          padding: 0 16px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          div.pharmacy-product-info {
+
+          }
+
+          div.pharmacy-product-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: $foreground-color;
+          }
+
+          &:hover {
+            background-color: $product-hover-bg;
+          }
         }
       }
     }

@@ -13,7 +13,7 @@ module.exports = {
       progress: true,
       overlay: {
         errors: true,
-        warnings: false,
+        warnings: true,
       },
     },
   },
@@ -58,8 +58,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
-    publicPath: '/',
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },

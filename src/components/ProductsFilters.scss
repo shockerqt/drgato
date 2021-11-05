@@ -1,0 +1,45 @@
+@use "../styles/theme";
+
+aside.products-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  grid-area: filters;
+
+  div.products-filters-action-buttons {
+    display: flex;
+    padding: 12px;
+    gap: 12px;
+  }
+
+}
+
+a.products-subcategory-link {
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  color: theme.$foreground-color-light;
+  font-size: theme.$font-size-small;
+  align-items: center;
+  padding: 8px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  > svg.products-subcategory-link-checkicon {
+    width: 14px;
+    height: 20px;
+    justify-self: center;
+  }
+
+  > span {
+    justify-self: center;
+  }
+
+  &.products-subcategory-link-active {
+    background: theme.$purple;
+    border-radius: 24px;
+    color: white;
+  }
+  
+}
