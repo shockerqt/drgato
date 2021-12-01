@@ -11,7 +11,21 @@
     "image125": "adrisin_heel_50_comprimidos_125.png",
     "image500": "adrisin_heel_50_comprimidos_500.png",
     "image2000": "adrisin_heel_50_comprimidos_2000.png",
-    "lastPrice": 14990
+    "lastPrice": 14990,
+    "pharmacies": [
+      {
+        "name": "Cruz Verde",
+        "url": "https://www.cruzverde.cl/adrisin-50-comprimidos-sublinguales/390928.html"
+      },
+      {
+        "name": "Salcobrand",
+        "url": "https://salcobrand.cl/products/adrisin-50-comprimidos-sublinguales"
+      },
+      {
+        "name": "Ahumada",
+        "url": "https://www.farmaciasahumada.cl/adrisin-50-comprimidos-sublinguales.html"
+      }
+    ]
   },
   {
     "category": "Sistema respiratorio y alergias",

@@ -45,8 +45,9 @@
   },
   "dependencies": {
     "react": "latest",
+    "react-datasheet": "^1.4.9",
     "react-dom": "latest",
-    "react-router-dom": "^6.0.0-beta.8",
+    "react-router-dom": "^6.0.2",
     "web-vitals": "^2.1.2"
   }
 }

@@ -8,8 +8,8 @@ const Products = ({ category }: { category: string }) => {
   return (
     <div className="products">
 
-      <ProductsSorters />
       <ProductsFilters />
+      <ProductsSorters />
       <ProductsGrid />
 
     </div>
