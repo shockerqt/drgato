@@ -39,6 +39,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Dr Gato',
+      template: 'src/index.html',
     }),
   ],
   resolve: {
