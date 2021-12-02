@@ -1,0 +1,38 @@
+@use "../styles/theme";
+
+main.products-grid-container {
+  div.products-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 30px;
+
+    a.products-grid-item {
+      flex: 0 0 240px;
+      padding: 20px;
+      background-color: white;
+      color: theme.$foreground-color;
+      border-radius: 8px;
+
+      div.products-grid-item-image-container {
+        height: 200px;
+        width: 200px;
+        background-color: grey;
+
+        img.products-grid-item-image {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      h1 {
+        font-size: 16px;
+        font-weight: 400;
+        text-transform: uppercase;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+}

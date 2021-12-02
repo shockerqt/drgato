@@ -21,7 +21,7 @@ export interface Remedy {
 export interface Product {
   title: string;
   slug: string;
-  description: string;
+  description: JSX.Element;
 }
 
 const Products = ({ section, constraints }: { section: keyof Constraints['sections'], constraints: Constraints }) => {
@@ -33,10 +33,18 @@ const Products = ({ section, constraints }: { section: keyof Constraints['sectio
 
       if (section === 'remedies') {
         const { remedies }: { [slug: string]: Remedy } = await response.json();
+        console.log(remedies);
         setProducts(Object.entries(remedies).map(([slug, remedy]: [string, Remedy]) => ({
           title: remedy.name,
           slug,
-          description: `${remedy.activePrinciple}${remedy.netContent && remedy.netContentUnit ? `\n${remedy.netContent} ${remedy.netContentUnit}` : ''}`,
+          description: (
+            <>
+              <p>{remedy.activePrinciple}</p>
+              {remedy.netContent && remedy.netContentUnit && <p>{`${remedy.netContent} ${remedy.netContentUnit}`}</p>}
+              {remedy.dose && <p>{`${remedy.dose}`}</p>}
+            </>
+          ),
+          // `${remedy.activePrinciple}${remedy.netContent && remedy.netContentUnit ? `${remedy.netContent} ${remedy.netContentUnit}` : ''}${remedy.dose ? `${remedy.dose}` : ''}`,
         })));
       }
     };
