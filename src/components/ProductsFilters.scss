@@ -15,7 +15,7 @@ aside.products-filters {
 
 }
 
-a.products-subcategory-link {
+a.products-category-link {
   display: grid;
   grid-template-columns: 40px 1fr 40px;
   color: theme.$foreground-color-light;
@@ -27,7 +27,7 @@ a.products-subcategory-link {
     text-decoration: underline;
   }
 
-  > svg.products-subcategory-link-checkicon {
+  > svg.products-category-link-checkicon {
     width: 14px;
     height: 20px;
     justify-self: center;
@@ -37,7 +37,7 @@ a.products-subcategory-link {
     justify-self: center;
   }
 
-  &.products-subcategory-link-active {
+  &.products-category-link-active {
     background: theme.$purple;
     border-radius: 24px;
     color: white;

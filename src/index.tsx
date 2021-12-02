@@ -5,10 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './styles/index.scss';
 
-// const container = document.createElement('div');
-// container.id = 'root';
-// document.body.appendChild(container);
-
 ReactDOM.render(
   <Router>
     <App />

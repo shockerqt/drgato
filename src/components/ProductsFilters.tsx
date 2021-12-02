@@ -3,28 +3,28 @@ import { CheckIcon, MinusIcon } from '.';
 
 import './ProductsFilters.scss';
 
-interface SubCategoryLinkProps extends Omit<LinkProps, 'to'> {
-  subcategory: string;
+interface CategoryLinkProps extends Omit<LinkProps, 'to'> {
+  category: string;
   number: number;
 }
 
-const SubCategoryLink = ({ subcategory, number, children }: SubCategoryLinkProps) => {
+const CategoryLink = ({ category, number, children }: CategoryLinkProps) => {
   const [searchParams] = useSearchParams();
 
-  const isActive = searchParams.getAll('cat').includes(subcategory);
+  const isActive = searchParams.getAll('cat').includes(category);
 
   const getNewSearchParams = () => {
     const newSearchParams = new URLSearchParams(searchParams);
 
-    const subcategories = newSearchParams.getAll('cat');
+    const categories = newSearchParams.getAll('cat');
 
-    const indexOfSubcategory = subcategories.indexOf(subcategory);
-    indexOfSubcategory === -1 ? subcategories.push(subcategory) : subcategories.splice(indexOfSubcategory, 1);
+    const indexOfSubcategory = categories.indexOf(category);
+    indexOfSubcategory === -1 ? categories.push(category) : categories.splice(indexOfSubcategory, 1);
 
     newSearchParams.delete('cat');
 
-    subcategories.sort();
-    subcategories.forEach((subcat) => newSearchParams.append('cat', subcat));
+    categories.sort();
+    categories.forEach((category) => newSearchParams.append('cat', category));
 
     newSearchParams.sort();
 
@@ -33,12 +33,12 @@ const SubCategoryLink = ({ subcategory, number, children }: SubCategoryLinkProps
 
   return (
     <Link
-      className={`products-subcategory-link ${isActive ? 'products-subcategory-link-active' : ''}`}
+      className={`products-category-link ${isActive ? 'products-category-link-active' : ''}`}
       to={{ search: getNewSearchParams() }}
       replace>
       {isActive
-        ? <CheckIcon className="products-subcategory-link-checkicon" />
-        : <MinusIcon className="products-subcategory-link-checkicon" />}
+        ? <CheckIcon className="products-category-link-checkicon" />
+        : <MinusIcon className="products-category-link-checkicon" />}
       {children}
       <span>{number}</span>
     </Link>
@@ -50,16 +50,16 @@ type SubCategories = {
 }
 
 interface AllLinkProps extends Omit<LinkProps, 'to'> {
-  subcategories: SubCategories;
+  categories: SubCategories;
 }
 
-const AllLink = ({ subcategories, children }: AllLinkProps) => {
+const AllLink = ({ categories, children }: AllLinkProps) => {
   const [searchParams] = useSearchParams();
 
   const getNewSearchParams = () => {
     const newSearchParams = new URLSearchParams(searchParams);
     newSearchParams.delete('cat');
-    Object.keys(subcategories).forEach((subcat) => newSearchParams.append('cat', subcat));
+    Object.keys(categories).forEach((category) => newSearchParams.append('cat', category));
     return newSearchParams.toString();
   };
 
@@ -97,7 +97,7 @@ const ClearLink = ({ children }: ClearLinkProps) => {
 
 const ProductsFilters = () => {
 
-  const subcategories = {
+  const categories = {
     'anticonceptivos-y-hormonas': 'Anticonceptivos y hormonas',
     'sistema-respiratorio-y-alergias': 'Sistema respiratorio y alergias',
     'dolor-fiebre-y-antiinflamatorios': 'Dolor, Fiebre y Antiinflamatorios',
@@ -106,11 +106,11 @@ const ProductsFilters = () => {
   return (
     <aside className="products-filters">
       <div className="products-filters-action-buttons">
-        <AllLink subcategories={subcategories}>Seleccionar todos</AllLink>
+        <AllLink categories={categories}>Seleccionar todos</AllLink>
         <ClearLink>Limpiar</ClearLink>
       </div>
-      {Object.entries(subcategories).map(([uri, name]) => (
-        <SubCategoryLink subcategory={uri} number={43}>{name}</SubCategoryLink>
+      {Object.entries(categories).map(([uri, name]) => (
+        <CategoryLink key={uri} category={uri} number={43}>{name}</CategoryLink>
       ))}
     </aside>
   );
