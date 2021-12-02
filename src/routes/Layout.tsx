@@ -1,30 +1,34 @@
 import { NavLink, Outlet } from 'react-router-dom';
+import { Constraints } from '../App';
+
 import { Logo } from '../components';
 import SearchBar from '../components/SearchBar';
-
 import './Layout.scss';
 
-const Layout = () => (
-  <div className="layout">
+const Layout = ({ constraints }: { constraints: Constraints }) => {
 
-    <nav className="navbar">
+  return (
+    <div className="layout">
 
-      <NavLink className="navbar-home" to="/">
-        <Logo className="navbar-drgato-logo" />
-      </NavLink>
+      <nav className="navbar">
 
-      <NavLink className="navbar-categories" to="/remedios">
-        <span className="navbar-categories-text">Cat</span>
-        <span className="navbar-categories-text-decoration">egorías</span>
-      </NavLink>
+        <NavLink className="navbar-home" to="/">
+          <Logo className="navbar-drgato-logo" />
+        </NavLink>
 
-      <SearchBar className="navbar-searchbar" />
+        <NavLink className="navbar-categories" to="/remedios">
+          <span className="navbar-categories-text">Cat</span>
+          <span className="navbar-categories-text-decoration">egorías</span>
+        </NavLink>
 
-    </nav>
+        <SearchBar className="navbar-searchbar" />
 
-    <Outlet />
+      </nav>
 
-  </div>
-);
+      <Outlet />
+
+    </div>
+  );
+};
 
 export default Layout;

@@ -12,8 +12,6 @@ const SorterLink = ({ children, order }: SorterLinkProps) => {
 
   const isActive = searchParams.get('order') === order;
 
-  console.log(isActive)
-
   const getNewSearchParams = () => {
     const newSearchParams = new URLSearchParams(searchParams);
     newSearchParams.set('order', order);

@@ -1,36 +1,58 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './routes';
-
-import { DataContext } from './utils/context';
 
 // const Product = React.lazy(() => import(/* webpackChunkName: "product" */ './routes/product'));
 const Products = React.lazy(() => import(/* webpackChunkName: "products" */ './routes/Products'));
 
 const Home = () => <div>Home</div>;
 
+export interface Category {
+  name: string;
+  remedies: string[];
+}
+
+export interface Constraints {
+  pharmacies: {
+    [slug: string]: { name: string };
+  };
+  sections: {
+    remedies: {
+      name: string;
+      categories: {
+        [slug: string]: Category;
+      };
+    };
+  };
+}
+
 const App = () => {
-  const [categories, setCategories] = useState({});
+  const [constraints, setConstraints]: [Constraints, Dispatch<SetStateAction<Constraints>>] = useState({
+    pharmacies: {},
+    sections: {
+      remedies: { name: 'Remedios', categories: {} },
+    },
+  });
 
   // fetch global data on initial render
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchConstraints = async () => {
       const response = await fetch('https://data.drgato.com/constraints.json');
-      console.log(await response.json());
+      setConstraints(await response.json());
     };
 
-    fetchCategories();
+    fetchConstraints();
   }, []);
 
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<Layout constraints={constraints} />}>
 
         <Route index element={<Home />} />
 
         <Route path="remedios" element={
           <React.Suspense fallback={<>...</>}>
-            <Products section="remedies" />
+            <Products section="remedies" constraints={constraints} />
           </React.Suspense>
         }/>
 
