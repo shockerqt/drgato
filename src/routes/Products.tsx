@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 
 import ProductsGrid from '../components/ProductsGrid';
 import ProductsFilters from '../components/ProductsFilters';
-import ProductsSorters from '../components/ProductsSorters';
+import ProductsSorters, { Order } from '../components/ProductsSorters';
 
 import './Products.scss';
 import { Constraints } from '../App';
@@ -31,21 +31,37 @@ const Products = ({ section, constraints }: { section: keyof Constraints['sectio
   const [products, setProducts]: [Product[], Dispatch<SetStateAction<Product[]>>] = useState<Product[]>([]);
 
   const selectedCategories = searchParams.getAll('cat');
-  const order = searchParams.get('order');
+  const selectedOrder = searchParams.get('order') as Order | null;
+
+  const order: Order = selectedOrder || 'name-asc';
 
   const filteredProducts = useMemo(() => {
-    console.log('FILTER', selectedCategories);
+    console.log('FILTER');
     if (selectedCategories.length) {
       return products.filter(product => selectedCategories.includes(product.category));
     } else {
       return [];
     }
-  }, [JSON.stringify(selectedCategories), products]);
+  }, [selectedCategories.toString(), products]);
 
   const sortedProducts = useMemo(() => {
     console.log('SORT');
+    switch (order) {
+    case 'name-asc':
+      filteredProducts.sort((a, b) => a.title > b.title ? 1 : -1);
+      break;
+    case 'name-desc':
+      filteredProducts.sort((a, b) => a.title > b.title ? -1 : 1);
+      break;
+    case 'price-asc':
+      filteredProducts.sort((a, b) => a.title > b.title ? 1 : -1);
+      break;
+    case 'price-desc':
+      filteredProducts.sort((a, b) => a.title > b.title ? -1 : 1);
+      break;
+    }
     return filteredProducts;
-  }, [filteredProducts, order]);
+  }, [order, products]);
 
   useEffect(() => {
     const fetchProducts = async () => {

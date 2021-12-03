@@ -16,6 +16,7 @@ const CategoryLink = ({ category, number, children }: CategoryLinkProps) => {
 
   const getNewSearchParams = () => {
     const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.delete('page');
 
     const categories = newSearchParams.getAll('cat');
 
@@ -55,6 +56,7 @@ const SelectCategories = ({ categories, children }: SelectCategoriesProps) => {
 
   const getNewSearchParams = () => {
     const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.delete('page');
     newSearchParams.delete('cat');
     if (categories) Object.keys(categories).forEach((slug) => newSearchParams.append('cat', slug));
     return newSearchParams.toString();

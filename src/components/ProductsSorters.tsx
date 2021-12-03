@@ -1,10 +1,10 @@
 import { Link, LinkProps, useSearchParams } from 'react-router-dom';
 import './ProductsSorters.scss';
 
-
+export type Order = 'name-asc' | 'name-desc' | 'price-asc' | 'price-desc'
 
 interface SorterLinkProps extends Omit<LinkProps, 'to'> {
-  order: string;
+  order: Order;
 }
 
 const SorterLink = ({ children, order }: SorterLinkProps) => {
@@ -14,6 +14,7 @@ const SorterLink = ({ children, order }: SorterLinkProps) => {
 
   const getNewSearchParams = () => {
     const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.delete('page');
     newSearchParams.set('order', order);
     return newSearchParams.toString();
   };
