@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 
 import ProductsGrid from '../components/ProductsGrid';
 import ProductsFilters from '../components/ProductsFilters';
@@ -6,6 +6,7 @@ import ProductsSorters from '../components/ProductsSorters';
 
 import './Products.scss';
 import { Constraints } from '../App';
+import { useSearchParams } from 'react-router-dom';
 
 export interface Remedy {
   category: string;
@@ -21,11 +22,30 @@ export interface Remedy {
 export interface Product {
   title: string;
   slug: string;
+  category: string;
   description: JSX.Element;
 }
 
 const Products = ({ section, constraints }: { section: keyof Constraints['sections'], constraints: Constraints }) => {
+  const [searchParams] = useSearchParams();
   const [products, setProducts]: [Product[], Dispatch<SetStateAction<Product[]>>] = useState<Product[]>([]);
+
+  const selectedCategories = searchParams.getAll('cat');
+  const order = searchParams.get('order');
+
+  const filteredProducts = useMemo(() => {
+    console.log('FILTER', selectedCategories);
+    if (selectedCategories.length) {
+      return products.filter(product => selectedCategories.includes(product.category));
+    } else {
+      return [];
+    }
+  }, [JSON.stringify(selectedCategories), products]);
+
+  const sortedProducts = useMemo(() => {
+    console.log('SORT');
+    return filteredProducts;
+  }, [filteredProducts, order]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -37,6 +57,7 @@ const Products = ({ section, constraints }: { section: keyof Constraints['sectio
         setProducts(Object.entries(remedies).map(([slug, remedy]: [string, Remedy]) => ({
           title: remedy.name,
           slug,
+          category: remedy.category,
           description: (
             <>
               <p>{remedy.activePrinciple}</p>
@@ -44,7 +65,6 @@ const Products = ({ section, constraints }: { section: keyof Constraints['sectio
               {remedy.dose && <p>{`${remedy.dose}`}</p>}
             </>
           ),
-          // `${remedy.activePrinciple}${remedy.netContent && remedy.netContentUnit ? `${remedy.netContent} ${remedy.netContentUnit}` : ''}${remedy.dose ? `${remedy.dose}` : ''}`,
         })));
       }
     };
@@ -56,8 +76,8 @@ const Products = ({ section, constraints }: { section: keyof Constraints['sectio
     <div className="products">
 
       <ProductsFilters categories={constraints.sections[section].categories} />
-      <ProductsSorters />
-      <ProductsGrid products={products} />
+      <ProductsSorters productsQuantity={sortedProducts.length} />
+      <ProductsGrid products={sortedProducts} />
 
     </div>
   );

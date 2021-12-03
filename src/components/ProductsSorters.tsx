@@ -28,12 +28,12 @@ const SorterLink = ({ children, order }: SorterLinkProps) => {
   );
 };
 
-const ProductsSorters = () => {
+const ProductsSorters = ({ productsQuantity }: { productsQuantity: number }) => {
 
   return (
     <header className="products-sorters">
       <div className="products-sorters-quantity">
-        127 <span className="color-foreground-light">productos</span>
+        {productsQuantity} <span className="color-foreground-light">{productsQuantity === 1 ? 'producto' : 'productos'}</span>
       </div>
       <SorterLink order="name-asc">A-Z</SorterLink>
       <SorterLink order="name-desc">Z-A</SorterLink>

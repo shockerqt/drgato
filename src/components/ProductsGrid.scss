@@ -7,15 +7,17 @@ main.products-grid-container {
     gap: 20px 30px;
 
     a.products-grid-item {
-      flex: 0 0 240px;
+      flex: 0 0 300px;
+      height: 400px;
       padding: 20px;
       background-color: white;
       color: theme.$foreground-color;
       border-radius: 8px;
 
       div.products-grid-item-image-container {
-        height: 200px;
-        width: 200px;
+        margin-bottom: 10px;
+        height: 260px;
+        aspect-ratio: 1;
         background-color: grey;
 
         img.products-grid-item-image {
@@ -32,7 +34,15 @@ main.products-grid-container {
 
       p {
         font-size: 14px;
+        color: theme.$foreground-color-light;
       }
+    }
+  }
+
+  div.products-grid-pagination {
+    svg.products-grid-pagination-arrowicon {
+      width: 12px;
+      // color: theme.$foreground-color;
     }
   }
 }
