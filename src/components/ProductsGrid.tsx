@@ -73,10 +73,10 @@ const ProductsGrid = ({ products }: { products: Product[] }) => {
             <ChevronLeftIcon className="products-grid-pagination-arrowicon" />
           </Link> : ''}
         <div className="products-grid-pagination-pages">
-          {getPages().map(pageNumber => (
+          {getPages().map((pageNumber, index) => (
             pageNumber === 0 ?
-              <div className="products-grid-pagination-ellipsis">...</div> :
-              <PageLink toPage={pageNumber} />
+              <div key={`ellipsis-${index}`} className="products-grid-pagination-ellipsis">...</div> :
+              <PageLink key={pageNumber} toPage={pageNumber} />
           ))}
         </div>
         {page < pages ?
@@ -85,8 +85,6 @@ const ProductsGrid = ({ products }: { products: Product[] }) => {
             to={{ search: toPageSearchParams(page + 1) }}>
             <ChevronRightIcon className="products-grid-pagination-arrowicon" />
           </Link> : ''}
-        {/* <button onClick={() => setPage(currentPage => currentPage - 1 > 0 ? currentPage - 1 : 1)}>Prev</button>
-        <button onClick={() => setPage(currentPage => currentPage + 1)}>Next</button> */}
       </div>
     </main>
   );

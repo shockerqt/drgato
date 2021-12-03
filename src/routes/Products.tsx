@@ -69,7 +69,6 @@ const Products = ({ section, constraints }: { section: keyof Constraints['sectio
 
       if (section === 'remedies') {
         const { remedies }: { [slug: string]: Remedy } = await response.json();
-        console.log(remedies);
         setProducts(Object.entries(remedies).map(([slug, remedy]: [string, Remedy]) => ({
           title: remedy.name,
           slug,
