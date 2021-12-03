@@ -36,7 +36,6 @@ const Products = ({ section, constraints }: { section: keyof Constraints['sectio
   const order: Order = selectedOrder || 'name-asc';
 
   const filteredProducts = useMemo(() => {
-    console.log('FILTER');
     if (selectedCategories.length) {
       return products.filter(product => selectedCategories.includes(product.category));
     } else {
@@ -45,7 +44,6 @@ const Products = ({ section, constraints }: { section: keyof Constraints['sectio
   }, [selectedCategories.toString(), products]);
 
   const sortedProducts = useMemo(() => {
-    console.log('SORT');
     switch (order) {
     case 'name-asc':
       filteredProducts.sort((a, b) => a.title > b.title ? 1 : -1);
@@ -61,7 +59,7 @@ const Products = ({ section, constraints }: { section: keyof Constraints['sectio
       break;
     }
     return filteredProducts;
-  }, [order, products]);
+  }, [order, products, filteredProducts]);
 
   useEffect(() => {
     const fetchProducts = async () => {
