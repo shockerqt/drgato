@@ -40,9 +40,58 @@ main.products-grid-container {
   }
 
   div.products-grid-pagination {
-    svg.products-grid-pagination-arrowicon {
-      width: 12px;
-      // color: theme.$foreground-color;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 40px auto 40px;
+    grid-template-areas: "left pages right";
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    div.products-grid-pagination-pages {
+      display: flex;
+      grid-area: pages;
+      gap: 12px;
+      // width: 240px;
+
+      .products-grid-pagination-page-number {
+        display: grid;
+        place-items: center;
+        height: 40px;
+        aspect-ratio: 1;
+        padding: 0;
+      }
+
+      .products-grid-pagination-ellipsis {
+        width: 40px;
+        text-align: center;
+        font-size: 20px;
+        line-height: 36px;
+        font-weight: 600;
+        // margin: 0 10px;
+      }
+
     }
+
+    .products-grid-pagination-arrow {
+      height: 40px;
+      display: grid;
+      place-items: center;
+      
+      &.products-grid-pagination-arrow-left {
+        grid-area: left;
+      }
+
+      &.products-grid-pagination-arrow-right {
+        grid-area: right;
+      }
+
+      svg.products-grid-pagination-arrowicon {
+        width: 12px;
+        color: theme.$foreground-color;
+      }
+
+    }
+
   }
 }
