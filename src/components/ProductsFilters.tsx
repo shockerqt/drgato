@@ -1,5 +1,5 @@
 import { Link, LinkProps, useSearchParams } from 'react-router-dom';
-import { CheckIcon, MinusIcon } from '.';
+import { CheckIcon, MinusIcon } from '../utils/icons';
 import { Category } from '../App';
 
 import './ProductsFilters.scss';

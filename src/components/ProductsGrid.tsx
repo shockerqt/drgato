@@ -1,6 +1,6 @@
 import { Link, useSearchParams } from 'react-router-dom';
 
-import { ChevronLeftIcon, ChevronRightIcon } from '.';
+import { ChevronLeftIcon, ChevronRightIcon } from '../utils/icons';
 import { Product } from '../routes/Products';
 import './ProductsGrid.scss';
 
@@ -9,7 +9,6 @@ const PAGE_SIZE = 12;
 const ProductsGrid = ({ products }: { products: Product[] }) => {
   const [searchParams] = useSearchParams();
   const pages = Math.ceil(products.length / PAGE_SIZE);
-
   const page = parseInt(searchParams.get('page') || '1');
   const productsInPage = products.slice(PAGE_SIZE * (page - 1), PAGE_SIZE * page);
 
@@ -64,7 +63,6 @@ const ProductsGrid = ({ products }: { products: Product[] }) => {
           </Link>
         ))}
       </div>
-      {/* {pages > 1} */}
       <div className="products-grid-pagination">
         {page > 1 ?
           <Link

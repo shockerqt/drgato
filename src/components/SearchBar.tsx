@@ -1,4 +1,4 @@
-import { SearchIcon } from '.';
+import { SearchIcon } from '../utils/icons';
 import './SearchBar.scss';
 
 

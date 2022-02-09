@@ -2,7 +2,7 @@ import '../styles/select.scss';
 
 import { FocusEvent, KeyboardEvent, MouseEvent, useEffect, useState } from 'react';
 
-import { ChevronRightIcon } from '.';
+import { ChevronRightIcon } from '../utils/icons';
 
 type Option = {
   label: string,

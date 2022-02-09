@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { Constraints } from '../App';
 
-import { Logo } from '../components';
+import { Logo } from '../utils/icons';
 import SearchBar from '../components/SearchBar';
 import './Layout.scss';
 
